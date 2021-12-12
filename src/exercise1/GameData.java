@@ -213,7 +213,8 @@ public class GameData {
 			{
 				st = connection.createStatement();
 				
-				ResultSet rs = st.executeQuery("SELECT * FROM game");
+				ResultSet rs = st.executeQuery("SELECT * FROM game UNION SELECT * FROM player");
+				//ResultSet rs = st.executeQuery("SELECT * FROM game");
 				
 				ResultSetMetaData md = rs.getMetaData();
 				int row=0;

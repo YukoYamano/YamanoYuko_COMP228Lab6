@@ -212,8 +212,8 @@ public class PlayerData {
 			try
 			{
 				st = connection.createStatement();
-				
-				ResultSet rs = st.executeQuery("SELECT * FROM player");
+				ResultSet rs = st.executeQuery("SELECT * FROM player UNION SELECT * FROM game");
+				//ResultSet rs = st.executeQuery("SELECT * FROM player");
 				//ResultSet rs = st.executeQuery("ALTER TABLE player ADD(GAME_TITLE varchar(8) DEFAULT'' NOT NULL)");
 				ResultSetMetaData md = rs.getMetaData();
 				int row=0;
