@@ -205,5 +205,36 @@ public class PlayerData {
 	      	e.printStackTrace();
 	      }
 	  } // deleteRow
+	  
+	  //added display function
+		public void displayResults()
+		{
+			try
+			{
+				st = connection.createStatement();
+				
+				ResultSet rs = st.executeQuery("SELECT * FROM player");
+				//ResultSet rs = st.executeQuery("ALTER TABLE player ADD(GAME_TITLE varchar(8) DEFAULT'' NOT NULL)");
+				ResultSetMetaData md = rs.getMetaData();
+				int row=0;
+				String info="";
+				while(rs.next())
+				{
+					for( int i=1;i <= md.getColumnCount();i++)
+					{
+						info+=md.getColumnName(i)+"\t: "+rs.getObject(i)+"\t"; 
+						
+					}
+					row+=1;
+					info+="\n";
+				}
+				JOptionPane.showMessageDialog(null, info);		
+				rs.close();
+			}
+			catch(SQLException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+				//e.printStackTrace();
+			}
+		}
 	} // end of PlayerData
 

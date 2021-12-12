@@ -128,6 +128,12 @@ public class Player {
 				{
 					playerData.deleteRow();
 				}
+				
+				public void display() 
+				{
+					//*************************************
+					System.out.println("Player's DisplayFunction was called");
+				}
 				public void refreshPlayerData(String data[])
 				{
 					 this.playerID=data[0];

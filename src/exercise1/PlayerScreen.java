@@ -7,6 +7,8 @@ import javax.swing.JTextField;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
+
 import javax.swing.*;
 
 public class PlayerScreen extends JFrame{
@@ -17,8 +19,8 @@ public class PlayerScreen extends JFrame{
 	int txtWidths[]={9,20,20,20,20,2,6};
 	  
 	//data access buttons
-	JButton btn[]=new JButton[4];
-	String btnNames[]={"Add New","Save","Update","Delete"};
+	JButton btn[]=new JButton[5];
+	String btnNames[]={"Add New","Save","Update","Delete","Display"};
 	  
 	//navigator buttons
 	JButton nav[]= new JButton[4];
@@ -29,6 +31,8 @@ public class PlayerScreen extends JFrame{
 	GridBagLayout gridBag;
 	private GridBagConstraints constraints; // constraints of this layout
 	JPanel screen;
+	
+
 	
 	public PlayerScreen() {
 		//
@@ -41,6 +45,10 @@ public class PlayerScreen extends JFrame{
 		gridBag = new GridBagLayout();
 		screen.setLayout(gridBag);
 		//
+		
+		
+		
+		
 		//create data entry screen
 		for(int i = 0; i<lbl.length;i++)
 		{
@@ -192,6 +200,18 @@ public class PlayerScreen extends JFrame{
 				else if(name.equals(btnNames[3])) //delete
 				{
 					player.deleteStudent();
+				}else if(name.equals(btnNames[4]))//add display
+				{
+					//////*****************************************************************************
+					player.display();
+					PlayerData pd;
+					try {
+						pd = new PlayerData();
+						pd.displayResults();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 		  
 			

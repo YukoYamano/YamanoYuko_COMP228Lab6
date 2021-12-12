@@ -7,6 +7,8 @@ import javax.swing.JTextField;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
+
 import javax.swing.*;
 
 public class GameScreen extends JFrame{
@@ -17,8 +19,8 @@ public class GameScreen extends JFrame{
 	int txtWidths[]={9,20,20,20,20,2,6};
 	  
 	//data access buttons
-	JButton btn[]=new JButton[4];
-	String btnNames[]={"Add New","Save","Update","Delete"};
+	JButton btn[]=new JButton[5];
+	String btnNames[]={"Add New","Save","Update","Delete","Display"};
 	
 	//navigator buttons
 	JButton nav[]= new JButton[4];
@@ -29,6 +31,9 @@ public class GameScreen extends JFrame{
 	GridBagLayout gridBag;
 	private GridBagConstraints constraints; // constraints of this layout
 	JPanel screen;
+	
+	
+	
 	//Construct the frame
 	public GameScreen() {
 		//
@@ -40,7 +45,10 @@ public class GameScreen extends JFrame{
 		screen = new JPanel();
 		gridBag = new GridBagLayout();
 		screen.setLayout(gridBag);
-		//
+		
+		
+		
+		
 		//create data entry screen
 		for(int i = 0; i<lbl.length;i++)
 		{
@@ -57,7 +65,11 @@ public class GameScreen extends JFrame{
 			//add text fields
 			addComponent(txt[i], i, 1, 1, 1,GridBagConstraints.NONE,
 					GridBagConstraints.WEST,new Insets(3, 3, 3, 3));
+			
 		}
+		
+	
+		
 		for(int i = 0; i<btn.length;i++)
 		{
 			btn[i] = new JButton(btnNames[i]);
@@ -167,6 +179,7 @@ public class GameScreen extends JFrame{
 					try
 					{
 						game = new Game();
+						
 						game.saveStudent(row);
 					}
 					catch (Exception ex)
@@ -185,7 +198,21 @@ public class GameScreen extends JFrame{
 				else if(name.equals(btnNames[3])) //delete
 				{
 					game.deleteGame();
+				}else if(name.equals(btnNames[4]))//add display
+				{
+					//////*****************************************************************************
+					game.display();
+					GameData gd;
+					try {
+						gd = new GameData();
+						gd.displayResults();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}
+				
 		  
 			
 			} //actionPerformed

@@ -82,5 +82,12 @@ public class Game {
 			 this.gameTitle=data[1];
 			
 		}
+		//Add display function
+		public void display() 
+		{
+			//*************************************
+			System.out.println("Game's DisplayFunction was called");
+			
+		}
 		
 }//end of Game class
