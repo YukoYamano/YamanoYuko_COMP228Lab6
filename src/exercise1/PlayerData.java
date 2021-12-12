@@ -139,7 +139,7 @@ public class PlayerData {
 	  {
 
 	      try {
-	  	    	pst = connection.prepareStatement("insert into Students (studentID, firstName, lastName, address, city, province, postalCode) VALUES(?,?,?,?,?,?,?)");
+	  	    	pst = connection.prepareStatement("insert into player (PLAYER_ID, FIRST_NAME, LAST_NAME, ADDRESS, POSTAL_CODE, PROVINCE, PHONE_NUMBER) VALUES(?,?,?,?,?,?,?)");
 
 	            /** The following works when the driver supports insertRow method
 	            rs.moveToInsertRow();
@@ -156,7 +156,7 @@ public class PlayerData {
 	            }
 	            int val = pst.executeUpdate();
 	            pst.close(); //close to make changes completed
-	            loadCurrentRecord("Select * from Students"); //open it again
+	            loadCurrentRecord("Select * from player"); //open it again
 	      }
 	      catch(Exception e) {
 	      	e.printStackTrace();
@@ -177,7 +177,7 @@ public class PlayerData {
 	            //
 	          	//this code updates the row using a prepared statement
 	            updateSt = connection.prepareStatement(
-	            		"Update Students set firstname = ?, lastname = ?,address = ?,city = ?, province = ?,postalCode = ? where studentid = ?");
+	            		"Update Students set FIRST_NAME = ?, LAST_NAME = ?,ADDRESS = ?,POSTAL_CODE = ?, PROVINCE = ?,PHONE_NUMBER = ? where PLAYER_ID = ?");
 	            //set values for all parameters excluding studentid
 	    	  	for(int i=2; i<= nCols; i++)
 	            {
@@ -187,7 +187,7 @@ public class PlayerData {
 	    	  	updateSt.setString(7,record[0]);
 	            int val = updateSt.executeUpdate();
 	            updateSt.close(); //close to make changes completed
-	            loadCurrentRecord("Select * from Students"); //open it again
+	            loadCurrentRecord("Select * from player"); //open it again
 	            
 	      }
 	      catch(Exception e) {
